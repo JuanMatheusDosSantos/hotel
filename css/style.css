@@ -1,0 +1,229 @@
+.carousel-inner {
+    max-height: 93vh;
+}
+
+.carousel-inner img {
+    height: 100vh;
+}
+
+.carousel-indicators [data-bs-slide-to].circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px white solid;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+form {
+    background-color: white;
+}
+
+.booking-form-container {
+    background-color: #ffffff;
+    gap: 15px;
+}
+
+.date-display {
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 300;
+}
+
+.date-separator {
+    font-size: 3rem;
+    line-height: 1;
+    color: #ccc;
+    font-weight: 200;
+}
+
+.promo-code-group {
+    min-width: 180px;
+}
+
+.promo-input {
+    border-bottom: 1px solid #ced4da !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+}
+
+.reserve-button {
+    background-color: #006400 !important;
+    border-color: #006400 !important;
+}
+
+.reserve-button:hover {
+    background-color: #004d00 !important;
+    border-color: #004d00 !important;
+}
+
+.occupancy-item {
+    min-width: 50px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.active {
+    background-color: white !important;
+}
+
+.bg-brown {
+    background-color: rgb(81, 52, 46) !important;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+.bg-grey {
+    background-color: #E6E6E6 !important;
+}
+
+.w-80 {
+    width: 80% !important;
+}
+
+.carousel-item img {
+    transition: transform 0.5s ease;
+}
+
+.carousel-caption {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.5s ease;
+    text-align: center;
+}
+
+.btn-close-white {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.w-10 {
+    width: 10% !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.mix-grey {
+    background: #E1E4E3;
+}
+
+.hover:hover {
+    background: #006400;
+}
+
+.w-50 {
+    width: 50% !important;
+}
+
+.h-50 {
+    height: 50% !important;
+}
+
+.bg-green {
+    background-color: #096F48;
+}
+
+.bg-green .carousel-caption {
+    bottom: 5px !important;
+}
+
+.bg-green .carousel-indicators button.active,
+.active-black .carousel-indicators button.active {
+    background-color: black !important;
+    border-color: black !important;
+}
+
+.bg-green .carousel-indicators [data-bs-slide-to].circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    border: 1px black solid;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.rounder {
+    height: 8em;
+    width: 8em;
+    border-radius: 100%;
+    background-color: white;
+    border: 1px black solid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+.opiniones-section {
+    padding: 80px 0;
+}
+
+.rating-circle {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #555;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.rating-number {
+    font-size: 2.2em;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.rating-text {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 5px;
+    font-weight: 400;
+}
+
+.vr-container {
+    height: 100%;
+}
+
+.carousel-pagination-text {
+    color: #6c757d;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+.nogutter-x {
+    --bs-gutter-x: 0 !important;
+}
+
+.btnScrollTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
+
+.w-20 {
+    width: 20% !important;
+}
+.w-25 {
+    width: 25% !important;
+}
+.w-30{
+    width: 30% !important;
+}
+.btn-brown{
+    background-color: #623E37 !important;
+}

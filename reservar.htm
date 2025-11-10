@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="js/js.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-white sticky-top shadow justify-content-between d-flex">
+        <div class="container-fluid">
+            <a href="index.htm" class="d-inline-block align-text-top">
+                <img src="imgs/logo.png" alt="Logo de FG hotels" width="50%">
+            </a>
+            <div class="container my-auto">
+                <form class="p-3 rounded booking-form-container d-flex justify-content-between align-items-center"
+                    action="reservar.htm">
+
+                    <div class="text-start me-4">
+                        <p class="h3 fw-bold mb-0 booking-cta">¡RESERVA AHORA!</p>
+                        <p class="text-muted small booking-guarantee">MEJOR PRECIO GARANTIZADO</p>
+                    </div>
+
+                    <div class="d-flex align-items-center date-selection">
+
+                        <div class="text-center position-relative date-input-group"
+                            onclick="document.getElementById('entrada').showPicker()">
+                            <label for="entrada" class="form-label small text-muted mb-1">ENTRADA</label>
+                            <input type="date" id="entrada" name="entrada" value="2425-11-03"
+                                class="position-absolute w-100 h-100 opacity-0 date-input">
+                            <span class="d-block date-display">03</span>
+                            <span class="d-block small fw-bold text-uppercase month-year">NOV 2425</span>
+                        </div>
+
+                        <span class="date-separator mx-3">></span>
+
+                        <div class="text-center position-relative date-input-group"
+                            onclick="document.getElementById('salida').showPicker()">
+                            <label for="salida" class="form-label small text-muted mb-1">SALIDA</label>
+                            <input type="date" id="salida" name="salida" value="2425-11-14"
+                                class="position-absolute w-100 h-100 opacity-0 date-input">
+                            <span class="d-block date-display">14</span>
+                            <span class="d-block small fw-bold text-uppercase">NOV 2425</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center mx-4">
+                        <label class="form-label small text-muted mb-1">OCUPACIÓN</label>
+                        <div class="d-flex occupancy-inputs pop">
+                            <div class="occupancy-item bg-light p-2 rounded d-flex align-items-center">
+                                <span class="me-1">👤</span>
+                                <span class="fw-bold">2</span>
+                            </div>
+                            <div class="occupancy-item bg-light p-2 rounded d-flex align-items-center">
+                                <span class="fw-bold">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mx-4 promo-code-group">
+                        <label for="promo" class="form-label small text-muted mb-1">CÓDIGO PROMOCIONAL</label>
+                        <input type="text" id="promo" name="promo"
+                            class="form-control-plaintext promo-input text-center">
+                    </div>
+
+                    <button type="submit"
+                        class="btn fw-bold p-3 text-uppercase reserve-button text-white">RESERVAR</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="mt-4 mx-auto col-6">
+        <div class="d-flex my-2">
+            <img src="imgs/buildings.svg" alt="" width="25px">
+            <p class="m-0 mx-2"> <b>2 Tipos de habitaciones disponibles en el Hotel FG Logroño para 2 adultos</b></p>
+        </div>
+        <div class="d-flex my-2">
+            <img src="imgs/calendar.svg" alt="" width="25px">
+            <p class="m-0 mx-2"><b>Del 09/11/2425 al 15/11/2425</b></p>
+            <img src="imgs/moon.svg" alt="" width="25px">
+            <p class="m-0"><b>6 noches</b></p>
+        </div>
+        <div class="d-flex mb-5">
+            <select name="pensiones" id="pensiones" class="w-50 form-select">
+                <option value="all">Todas las pensiones</option>
+                <option value="all">Solo alojamiento</option>
+                <option value="all">Alojamiento y desayuno</option>
+            </select>
+            <select name="pensiones" id="pensiones" class="w-50 form-select">
+                <option value="EUR">Euro (€)</option>
+                <option value="GBP">British Pound (£)</option>
+                <option value="USD">United States Dollar (USD$)</option>
+                <option value="RUB">Russian ruble (руб)</option>
+            </select>
+        </div>
+        <div class="border border-1 p-5 shadow">
+            <div class="d-flex flex-xl-row flex-sm-column">
+                <img src="imgs/habitacion1.webp" alt="" class="w-25 me-3 sm-w-100">
+                <div>
+                    <h3><b>Doble Estandar</b></h3>
+                    <p>La habitación doble estándar del Hotel F&G Logroño ofrece máximo confort en un espacio versátil
+                        con cama de matrimonio o 2 individuales, posibilidad de supletoria, vistas exteriores, baño
+                        privado, wifi gratis, minibar, TV satélite, teléfono, caja fuerte para ordenador, secador…
+                        <br>
+                        Tu habitación doble con wifi en Logroño.
+                    </p>
+                    <div class="d-flex">
+                        <img src="imgs/snow.svg" alt="icono de copo de nieve" class="me-2">
+                        <img src="imgs/bar.svg" alt="icono de un vaso" style="width: 24px;" class="me-2">
+                        <img src="imgs/phone.svg" alt="icono de un telefono" style="width: 24px;" class="me-2">
+                        <img src="imgs/desk.svg" alt="icono de un escritorio" style="width: 24px;" class="me-2">
+                        <img src="imgs/pc.svg" alt="icono de un ordenador" style="width: 24px;" class="me-2">
+                        <img src="imgs/cajafuerte.svg" alt="icono de una caja fuerte" style="width: 24px;" class="me-2">
+                        <img src="imgs/despertador.svg" alt="icono de un despertador" style="width: 24px;" class="me-2">
+                        <img src="imgs/radiador.svg" alt="icono de un radiador" style="width: 24px;" class="me-2">
+                        <img src="imgs/secador.svg" alt="icono de un secador" style="width: 24px;" class="me-2">
+                        <img src="imgs/bed.svg" alt="icono de una cama" style="width: 24px;" class="me-2">
+                    </div>
+                </div>
+            </div>
+            <div class=" border border-1 mt-5">
+                <div class="d-flex justify-content-between ">
+                    <p class="text-uppercase ms-1"> tarifa flexible</p>
+                    <div class="d-flex me-2 ">
+                        <p class="text-uppercase m-0 me-2 text-center" style="font-size: 10px;">pago en el hotel</p>
+                        <p class="text-uppercase m-0 text-center" style="font-size: 10px;">impuestos incluidos</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="#" class=" text-black">Condiciones de la reserva</a>
+                </div>
+                <div class=" ms-1">
+                    <p>Cancelación GRATUITA:</p>
+                    <p>Si cancela o modifica la reserva hasta las 48hrs del día de llegada, el establecimiento <u>NO
+                            efectuará cargos</u>..</p>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between me-1">
+                    <p>Solo Alojamiento</p>
+                    <div class="d-flex">
+                        <h3>84,00€</h3>
+                        <button class="btn btn-brown text-uppercase text-white ms-1">añadir</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-end me-1">
+                    <p style="font-size: 15px;">Incluido: IVA (10%).</p>
+                </div>
+            </div>
+            <div class=" border border-1 mt-5">
+                <div class="d-flex justify-content-between">
+                    <p class="text-uppercase"> PAGA AHORA Y AHORRA</p>
+                    <div class="d-flex">
+                        <p class="text-uppercase m-0 text-center" style="font-size: 10px;">impuestos incluidos</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="#" class=" text-black">Condiciones de la reserva</a>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <p>Solo Alojamiento</p>
+                    <div class="d-flex">
+                        <h3>84,00€</h3>
+                        <button class="btn btn-brown text-uppercase text-white">añadir</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-end">
+                    <p style="font-size: 15px;">Incluido: IVA (10%).</p>
+                </div>
+            </div>
+            <div class=" border border-1 mt-5">
+                <div class="d-flex justify-content-between">
+                    <p class="text-uppercase"> tarifa flexible bb</p>
+                    <div class="d-flex">
+                        <p class="text-uppercase m-0 me-2 text-center" style="font-size: 10px;">pago en el hotel</p>
+                        <p class="text-uppercase m-0 text-center" style="font-size: 10px;">impuestos incluidos</p>
+                        <p class="text-uppercase m-0 text-center" style="font-size: 10px;">¡Cancelación gratis! </p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="#" class=" text-black">Condiciones de la reserva</a>
+                </div>
+                <div>
+                    <p>Cancelación GRATUITA:</p>
+                    <p>Si cancela o modifica la reserva hasta las 48hrs del día de llegada, el establecimiento <u>NO
+                            efectuará cargos</u>..</p>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <p>Alojamiento y Desayuno</p>
+                    <div class="d-flex">
+                        <h3>107,00€</h3>
+                        <button class="btn btn-brown text-uppercase text-white">añadir</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-end">
+                    <p style="font-size: 15px;">Incluido: IVA (10%).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

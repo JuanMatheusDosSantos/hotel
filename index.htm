@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel FG en logroño</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="js/js.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-white sticky-top">
+        <div class="container-fluid">
+            <a href="#" class="d-inline-block align-text-top">
+                <img src="imgs/logo.png" alt="Logo de FG hotels" width="30%">
+            </a>
+            <div class="d-flex align-items-center">
+                <a href="miReserva.htm" class="me-2 text-decoration-none text-dark">MI RESERVA</a>
+                <div class="vr"></div>
+                <select name="idiomas" id="traduccion" class="ms-2 border-0">
+                    <option value="es" selected>ES</option>
+                    <option value="en">EN</option>
+                    <option value="fr">FR</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+    <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active circle"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1" class="circle"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2" class="circle"
+                aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="3" class="circle"
+                aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./imgs/hotel-home.webp" alt="entrada del hotel" class="d-block w-100 img-fluid">
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                    <h2>Hotel FG Logroño</h2>
+                    <h1>Modernidad, tradición y gusto por lo auténtico</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./imgs/interior-home.webp" alt="interior del hotel" class="d-block w-100 img-fluid">
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                    <h2>Hotel FG Logroño</h2>
+                    <h1>Modernas, funcionales y luminosas</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./imgs/vinos-home.webp" alt="vinos del hotel" class="d-block w-100 img-fluid">
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                    <h2>Hotel FG Logroño</h2>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./imgs/puente-home.webp" alt="puente al lado del hotel" class="d-block w-100 img-fluid">
+                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                    <h2>Hotel FG Logroño</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <form class="p-3 shadow-lg rounded booking-form-container d-flex flex-column flex-xl-row justify-content-between align-items-center" action="reservar.htm">
+            <div class="text-start me-4 col-md-12 col-xl-3">
+                <p class="h3 fw-bold mb-0 booking-cta">¡RESERVA AHORA!</p>
+                <p class="text-muted small booking-guarantee">MEJOR PRECIO GARANTIZADO</p>
+            </div>
+
+            <div class="d-flex align-items-center date-selection col-md-12 col-xl-3">
+
+                <div class="text-center position-relative date-input-group"
+                    onclick="document.getElementById('entrada').showPicker()">
+                    <label for="entrada" class="form-label small text-muted mb-1">ENTRADA</label>
+                    <input type="date" id="entrada" name="entrada" value="2025-11-03"
+                        class="position-absolute w-100 h-100 opacity-0 date-input">
+                    <span class="d-block date-display">03</span>
+                    <span class="d-block small fw-bold text-uppercase month-year">NOV 2025</span>
+                </div>
+
+                <span class="date-separator mx-3">></span>
+
+                <div class="text-center position-relative date-input-group"
+                    onclick="document.getElementById('salida').showPicker()">
+                    <label for="salida" class="form-label small text-muted mb-1">SALIDA</label>
+                    <input type="date" id="salida" name="salida" value="2025-11-14"
+                        class="position-absolute w-100 h-100 opacity-0 date-input">
+                    <span class="d-block date-display">14</span>
+                    <span class="d-block small fw-bold text-uppercase">NOV 2025</span>
+                </div>
+            </div>
+
+            <div class="text-center mx-4">
+                <label class="form-label small text-muted mb-1">OCUPACIÓN</label>
+                <div class="d-flex occupancy-inputs pop">
+                    <div class="occupancy-item bg-light p-2 rounded d-flex align-items-center">
+                        <span class="me-1">👤</span>
+                        <span class="fw-bold">2</span>
+                    </div>
+                    <div class="occupancy-item bg-light p-2 rounded d-flex align-items-center">
+                        <span class="fw-bold">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mx-4 promo-code-group">
+                <label for="promo" class="form-label small text-muted mb-1">CÓDIGO PROMOCIONAL</label>
+                <input type="text" id="promo" name="promo" class="form-control-plaintext promo-input text-center">
+            </div>
+
+            <button type="submit" class="btn fw-bold p-3 text-uppercase reserve-button text-white">RESERVAR</button>
+        </form>
+    </div>
+    <div class="bg-brown text-white text-center align-items-center justify-content-center">
+        <h2 class="pt-5 fs-1">Bienvenido al Hotel FG Logroño</h2>
+        <p class="w-80 mx-auto pt-1 fs-5">El Hotel F&G Logroño te invita a conocer un hotel en el casco histórico de la
+            ciudad de Logroño de 3 estrellas:
+            un alojamiento en el que se combinan modernidad, tradición y el gusto por lo auténtico.
+            Ideal para viajes de negocios, banquetes e incentivos gracias a su cercanía al Palacio de Congresos,
+            está lleno de confort y ofrece una relación calidad-precio envidiable.</p>
+        <p class="pb-5 fs-5">Jacuzzi, sauna, gimnasio, restaurante, bodega de vinos… Disfruta tu hotel con wifi gratis
+            en Logroño
+            al mejor precio online. Solo aquí, en la <b>web oficial del Hotel F&G Logroño</b>.</p>
+    </div>
+    <div class="mx-auto text-center pt-4">
+        <h2 class="fs-2"><b>Hotel FG Logroño</b> Habitaciones</h2>
+        <p class="w-80 mx-auto fs-5 pt-2 bt-4">Modernas, funcionales y luminosas, las <b>habitaciones del Hotel F&G
+                Logroño</b> aúnan diseño y comodidad a medida
+            de todos nuestros huéspedes:
+            minibar, wifi gratis, baño privado, vistas exteriores... Reserva tu habitación en Logroño en la <b>web
+                oficial del Hotel F&G Logroño.</b>
+        </p>
+        <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carousel2" 2 data-bs-slide-to="0" class="active circle"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carousel2" data-bs-slide-to="1" class="circle"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carousel2" data-bs-slide-to="2" class="circle"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carousel2" data-bs-slide-to="3" class="circle"
+                    aria-label="Slide 4"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active pointer" data-bs-toggle="modal" data-bs-target="#popup1">
+                    <img src="./imgs/habitacion1.webp" alt="entrada del hotel" class="d-block w-100">
+                    <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                    </div>
+                </div>
+                <div class="carousel-item pointer" data-bs-toggle="modal" data-bs-target="#popup2">
+                    <img src="./imgs/habitacion1.webp" alt="interior del hotel" class="d-block w-100">
+                    <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                    </div>
+                </div>
+                <div class="carousel-item pointer" data-bs-toggle="modal" data-bs-target="#popup3">
+                    <img src="./imgs/habitacion3.webp" alt="vinos del hotel" class="d-block w-100">
+                    <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                    </div>
+                </div>
+                <div class="carousel-item pointer" data-bs-toggle="modal" data-bs-target="#popup4">
+                    <img src="./imgs/habitacion4.webp" alt="puente al lado del hotel" class="d-block w-100">
+                    <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            <div class="modal fade" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true" id="popup1">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header text-white bg-brown text-center">
+                            <h5 class="modal-title w-100" id="popupLabel">Habitation Doble Estándar</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body px-5"">
+                            <p>La habitación doble estándar del Hotel F&G Logroño ofrece máximo confort en un espacio
+                                versátil con cama de matrimonio o 2 individuales, posibilidad de supletoria, vistas
+                                exteriores, baño privado, wifi gratis, minibar, TV satélite, teléfono, caja fuerte para
+                                ordenador, secador... Tu habitación doble con wifi en Logroño.</p>
+                        </div>
+                        <div class=" modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true" id="popup2">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header text-white bg-brown text-center">
+                            <h5 class="modal-title w-100" id="popupLabel">Habitación Doble Uso Individual</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body px-5"">
+                            <p>La habitación individual estándar del Hotel F&G Logroño es la opción ideal para los
+                                viajes de negocios o en grupo ya que permiten disfrutar de total intimidad en un espacio
+                                con todos los servicios: baño, secador, wifi gratis, teléfono y TV satélite, minibar,
+                                caja fuerte para portátil... El alojamiento para 1 persona en Logroño.</p>
+                        </div>
+                        <div class=" modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true" id="popup3">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header text-white bg-brown text-center">
+                            <h5 class="modal-title w-100" id="popupLabel">Habitation Triple</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body px-5"">
+                            <p>La habitación triple estándar del Hotel F&G Logroño ofrece máximo confort en un espacio
+                                versátil con cama de matrimonio o 2 individuales con supletoria, vistas exteriores, baño
+                                privado, wifi gratis, minibar, TV satélite, teléfono, caja fuerte para ordenador,
+                                secador... Tu habitación triple con wifi en Logroño </p>
+                        </div>
+                        <div class=" modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true" id="popup4">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header text-white bg-brown text-center">
+                            <h5 class="modal-title w-100" id="popupLabel">Junior Suite</h5>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body px-5"">
+                            <p>Elige una de las junior suite del Hotel F&G Logroño y disfruta del mejor descanso en un
+                                espacio con 2 ambientes y todos los servicios al alcance de la mano: cómodas camas con
+                                posibilidad de supletoria, baño, secador, TV, teléfono, minibar, wifi gratis, zona de
+                                estar... Habitaciones en Logroño para una estancia de lujo.</p>
+                        </div>
+                        <div class=" modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-grey">
+        <div class="text-center align-items-center justify-content-center px-5">
+            <h3 class="pt-5 fs-1"><b>GALERÍA</b> DE FOTOS</h3>
+            <p class="w-80 mx-auto pt-1 fs-5 pb-1">Conoce al detalle este hotel en Logroño entrando en la <b>galería de
+                    fotos y vídeos de Hotel F&G Logroño.</b>
+                Consulta aquí todas las imágenes de este hotel con wifi gratis en La Rioja.
+            </p>
+        </div>
+        <div class="col-12 col-md-8 col-lg-6 mx-auto mb-4 w-100">
+            <div class="position-relative align-items-center d-flex flex-column flex-xl-row justify-content-center">
+                <img src="imgs/restaurante.webp" alt="imagen del restaurante"
+                    class="rounded-circle w-10 imgs me-4 pointer img-fluid" data-bs-toggle="modal" data-bs-target="#popup5">
+                <img src="imgs/spa.webp" alt="imagen del spa" class="rounded-circle w-10 imgs me-4 pointer"
+                    data-bs-toggle="modal" data-bs-target="#popup6">
+                <img src="imgs/instalaciones.webp" alt="imagen de las instalaciones "
+                    class="rounded-circle w-10 imgs me-4 pointer" data-bs-toggle="modal" data-bs-target="#popup7">
+                <img src="imgs/cafeteria.webp" alt="imagen de la cafeteria "
+                    class="rounded-circle w-10 imgs me-4 pointer" data-bs-toggle="modal" data-bs-target="#popup8">
+            </div>
+        </div>
+
+        <div class="modal fade" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true" id="popup5">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header text-white bg-brown text-center">
+                        <h5 class="modal-title w-100" id="popupLabel">Restaurante</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-5"">
+                            <img src=" imgs/restaurante.webp" class="w-100">
+                    </div>
+                    <div class=" modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true" id="popup6">
+            <div class="modal-dialog modal-dialog-centered modal-lg ">
+                <div class="modal-content">
+                    <div class="modal-header text-white bg-brown text-center">
+                        <h5 class="modal-title w-100" id="popupLabel">Gimnasio</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-5"">
+                            <img src=" imgs/spa.webp" class="w-100">
+                    </div>
+                    <div class=" modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true" id="popup7">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header text-white bg-brown text-center">
+                        <h5 class="modal-title w-100" id="popupLabel">Instalaciones</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-5"">
+                            <img src=" imgs/instalaciones.webp" class="w-100">
+                    </div>
+                    <div class=" modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true" id="popup8">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header text-white bg-brown text-center">
+                        <h5 class="modal-title w-100" id="popupLabel">Cafeteria</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body px-5"">
+                            <img src=" imgs/cafeteria.webp" class="w-100">
+                    </div>
+                    <div class=" modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <div class="text-center align-items-center justify-content-center px-5">
+            <h3 class="pt-5 fs-1"><b>Hotel FG Logroño</b> servicios</h3>
+            <p class="w-80 mx-auto pt-1 fs-5 pb-1">Los <b>servicios del Hotel F&G Logroño</b>
+                son perfectos tanto como complemento de una estancia de relax y gastronomía en La Rioja como para un
+                viaje de negocios: spa, sauna, bar, restaurante, parking, salones, wifi gratuito, consigna, lavandería,
+                bodega de vinos, gimnasio…
+            </p>
+        </div>
+        <div class="text-center">
+            <img src="imgs/svg-sillarueda.png" alt=" icono de silla de ruedas"
+                class="rounded-circle mix-grey w-10 imgs me-4">
+            <img src="imgs/svg-taza.png" alt="icono de taza" class="rounded-circle mix-grey w-10 imgs me-4">
+            <img src="imgs/svg-pesas.png" alt="icono de pesas" class="rounded-circle mix-grey w-10 imgs me-4">
+            <img src="imgs/svg-masaje.png" alt="icono de svg-masaje" class="rounded-circle mix-grey w-10 imgs me-4">
+            <img src="imgs/svg-coche.png" alt="icono de coche" class="rounded-circle mix-grey w-10 imgs me-4">
+            <img src="imgs/svg-cubiertos.png" alt="icono de cubiertos" class="rounded-circle mix-grey w-10 imgs me-4">
+            <img src="imgs/svg-termometro.png" alt="icono de svg-termometro"
+                class="rounded-circle mix-grey w-10 imgs me-4">
+        </div>
+    </div>
+    <div class="d-flex col">
+        <div
+            class="d-flex bg-brown text-white text-center align-items-center justify-content-center col-4 order-2 justify-content-center">
+            <p class="pt-1 fs-5" style="margin-bottom: 0px;">El <b>Hotel F&G Logroño</b> es un hotel cerca del Palacio
+                de Congresos de
+                Logroño y la ruta del Camino de Santiago. Situado a un paso del Puente de la Piedra que cruza sobre el
+                Ebro, es un hotel ideal para recorrer el centro de Logroño, visitar la Concatedral de Santa María La
+                Redonda, la Casa de las Ciencias y el parque de La Concordia.
+                <br>
+                Es un Hotel ideal para la ruta de tapas de Logroño a escasos metros de la calle de San
+                Juan y a 500 metros de la calle Laurel. Situado en el casco antiguo de la ciudad, este hotel en el
+                centro de Logroño está al lado de la plaza de Toros de la Ribera, la Iglesia Santa María de Palacio y a
+                solo 6
+                minutos del Ayuntamiento de Logroño.</b>.
+                <br>
+                <b>Avenida de Viana n º 2-6, 26001, Logroño, La Rioja.
+                    Tel: 941 008 900</b>
+            </p>
+        </div>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d23546.84673471179!2d-2.444985!3d42.46272!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5aab3fab32b0b1%3A0x3bac8e278c4c62de!2sHotel%20Fg%20Logro%C3%B1o!5e0!3m2!1ses!2sus!4v1762431044247!5m2!1ses!2sus"
+            width="600" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" class="col-8 order-1"></iframe>
+    </div>
+    <div class="d-flex mx-auto col mt-4">
+        <div class="col-8 order-1">
+            <h2><b>Contacta</b> con nosotros</h2>
+            <p>Consulta y revisa los datos de <b>contacto del Hotel F&G Logroño</b>: dirección, email,
+                teléfono... Ahora puedes reservar directamente desde aquí, en la <b>web oficial del Hotel F&G
+                    Logroño</b>
+                <br>
+                E-mail: reservas.logrono@fghotels.com
+                <br>
+                Teléfono: 941 008 900
+            </p>
+        </div>
+        <div class="d-flex text-center align-items-center justify-content-center col-4 order-2 justify-content-center">
+            <form class="mx-5 w-100">
+                <div class="mb-3 col d-flex pb-3">
+                    <label for="name" class="form-label d-flex col-3 align-items-end mb-0 mt-2">
+                        Nombre: *
+                    </label>
+                    <input type="text"
+                        class="form-control border-top-0 border-start-0 border-end-0 border-black rounded-0 p-0"
+                        id="name" aria-describedby="nameHelp" required>
+                </div>
+                <div class="mb-3 col d-flex pb-3">
+                    <label for="lastName" class="form-label d-flex col-3 align-items-end mb-0 mt-2">
+                        Apellido: *
+                    </label>
+                    <input type="text"
+                        class="form-control border-top-0 border-start-0 border-end-0 border-black rounded-0 p-0"
+                        id="lastName" aria-describedby="lastnameHelp" required>
+                </div>
+                <div class="mb-3 col d-flex pb-3">
+                    <label for="email" class="form-label d-flex col-3  align-items-end mb-0 mt-2">
+                        Correo electrónico *
+                    </label>
+                    <input type="email"
+                        class="form-control border-top-0 border-start-0 border-end-0 border-black rounded-0 p-0"
+                        id="email" aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3 col d-flex pb-3">
+                    <label for="phone" class="form-label d-flex col-3  align-items-end mb-0 mt-2">
+                        Telefono *
+                    </label>
+                    <input type="tel" class="form-control border-black p-0 " id="phone" aria-describedby="emailHelp"
+                        required>
+                </div>
+                <div class="mb-3 col d-flex pb-3">
+                    <label for="asunto" class="form-label d-flex col-3  align-items-end mb-0 mt-2">
+                        Asunto contacto
+                    </label>
+                    <select name="asunto"
+                        class="form-select border-top-0 border-start-0 border-end-0 rounded-0 border-black p-0 "
+                        id="asunto" required>
+                        <option value="general">Pregunta general</option>
+                        <option value="miReserva">Mi reserva</option>
+                    </select>
+                </div>
+                <div class="mb-3 col d-flex pb-3">
+                    <label for="comentario" class="form-label d-flex col-3  align-items-end mb-0 mt-2">
+                        Comentario *
+                    </label>
+                    <textarea name="comentario" id="comentario" class="form-control w-100 border-black"></textarea>
+                </div>
+                <div class="d-flex">
+                    <input type="checkbox" name="politica" id="politica" class="form-check-input border-black me-2"
+                        value="" required>
+                    <label for="politica">He leído y acepto la Política de privacidad *</label>
+                </div>
+                <div class="d-block">
+                    <button class="btn btn-success d-flex align-items-start mt-4">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="d-flex col mx-aut mt-5" style="height: 300px;">
+        <div class="d-flex col-4">
+            <img src="imgs/restaurante.webp" alt="imagen del restaurante" class="w-100">
+        </div>
+        <div class="d-flex col-8 bg-green text-white row align-items-center text-center">
+            <h2 class="text-uppercase w-100 mt-1" style="height: 50%;"><b>Mejor precio online</b> Garantizado</h2>
+
+            <div class="carousel slide w-100" id="text1" data-bs-ride="carousel" style="height: 50%;">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-toggle="modal"
+                        style="background-color: transparent !important;">
+                        <h3 class="text-uppercase">"Habla ya con un asesor"</h3>
+                        <div
+                            class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-toggle="modal" style="background-color: transparent !important;">
+                        <h3 class="text-uppercase">"ofertas reales que no veras en otra web"</h3>
+                        <div
+                            class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-toggle="modal" style="background-color: transparent !important;">
+                        <h3 class="text-uppercase"> "no hay intermediarios, no pagas"</h3>
+                        <div
+                            class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#text1" 2 data-bs-slide-to="0" class="active circle"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#text1" data-bs-slide-to="1" class="circle"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#text1" data-bs-slide-to="2" class="circle"
+                        aria-label="Slide 3"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="opiniones-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 d-flex flex-column pe-5">
+                    <h2 class="display-6 fw-bold mb-0">Opiniones
+                        <span class="fw-light text-secondary">DE CLIENTES</span>
+                    </h2>
+
+                    <button class="btn btn-lg mt-4 text-uppercase fw-bold text-white"
+                        style="background-color: #1a7350; border-color: #1a7350; width: 220px;">
+                        AGREGAR OPINIÓN
+                    </button>
+                </div>
+
+                <div class="col-lg-auto d-none d-lg-flex justify-content-center px-4">
+                    <div class="vr vr-container text-secondary"></div>
+                </div>
+
+                <div class="col-lg-7 ps-5 position-relative">
+
+                    <div id="reviewCarousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false">
+
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+                                <div class="d-flex align-items-start">
+                                    <div class="rating-circle me-4">
+                                        <span class="rating-number">9.0</span>
+                                        <span class="rating-text">EXCELENTE</span>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex align-items-baseline mb-3">
+                                            <h4 class="fw-normal me-2 mb-0">Isabel</h4>
+                                            <span class="text-muted small">(22/08/2022)</span>
+                                        </div>
+                                        <p class="mb-3">
+                                            Hotel muy bien ubicado, aun estado en pleno centro histórico era muy
+                                            tranquilo. Las habitaciones bien de tamaño. Estuvimos dos noches y muy bien,
+                                            aunque las almohadas muy blandas y entrar a la bañera para una persona mayor
+                                            costaba un poco. El desayuno bien y el personal fantástico. La única pega
+                                            que le pondría es que a un pequeño jacuzzi y una sauna yo no lo llamaría
+                                            precisamente spa.
+                                        </p>
+                                        <span class="text-uppercase text-muted small d-block">ESPAÑA</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="d-flex align-items-start">
+                                    <div class="rating-circle me-4">
+                                        <span class="rating-number">10</span>
+                                        <span class="rating-text">EXCELENTE</span>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex align-items-baseline mb-3">
+                                            <h4 class="fw-normal me-2 mb-0">Manuela</h4>
+                                            <span class="text-muted small">(07/07/2021)</span>
+                                        </div>
+                                        <p class="mb-3">
+                                            "El hotel es muy limpio y cómodo, pase unas increíbles
+                                            vacaciones con mi familia. Me volvería a hospedar en este hotel.".
+                                        </p>
+                                        <span class="text-uppercase text-muted small d-block">ESPAÑA</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div class="d-flex align-items-start">
+                                    <div class="rating-circle me-4">
+                                        <span class="rating-number">9.0</span>
+                                        <span class="rating-text">EXCELENTE</span>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <div class="d-flex align-items-baseline mb-3">
+                                            <h4 class="fw-normal me-2 mb-0">Carolina</h4>
+                                            <span class="text-muted small">(07/07/2021)</span>
+                                        </div>
+                                        <p class="mb-3">
+                                            "Este hotel es maravilloso, las habitaciones son muy cómodas y el desayuno
+                                            es exquisito. Lo recomiendo 100%"
+                                        </p>
+                                        <span class="text-uppercase text-muted small d-block">Colombia</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="d-flex align-items-center mt-4">
+
+                            <button
+                                class="carousel-control-prev position-relative w-auto bg-transparent border-0 me-3 p-0"
+                                type="button" data-bs-target="#reviewCarousel" data-bs-slide="prev">
+                                <span aria-hidden="true" class="text-secondary">&lt;</span>
+                                <span class="visually-hidden">Anterior</span>
+                            </button>
+
+                            <span class="carousel-pagination-text" id="currentReviewIndex"></span>
+
+                            <button
+                                class="carousel-control-next position-relative w-auto bg-transparent border-0 ms-3 p-0"
+                                type="button" data-bs-target="#reviewCarousel" data-bs-slide="next">
+                                <span aria-hidden="true" class="text-secondary">&gt;</span>
+                                <span class="visually-hidden">Siguiente</span>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex row text-center justify-content-center bg-grey nogutter-x">
+        <div class="mt-4">
+            <h2><b>Boletín de noticias</b></h2>
+            <p>Suscríbete a nuestro newsletter y recibe nuestras mejores ofertas y <br> promociones directamente en tu
+                bandeja de correo.</p>
+        </div>
+
+        <div class="d-flex text-center align-items-center justify-content-center col-4 justify-content-center">
+            <form class="mx-5 w-100 bg-grey">
+                <div class="mb-3 col d-flex pb-3">
+                    <label for="email" class="form-label d-flex col-3  align-items-end mb-0 mt-2">
+                        Correo electrónico *
+                    </label>
+                    <input type="email"
+                        class="form-control border-top-0 border-start-0 border-end-0 border-black rounded-0 p-0 bg-grey"
+                        id="email" aria-describedby="emailHelp" required>
+                </div>
+                <div class="d-flex">
+                    <input type="checkbox" name="politica" id="politica" class="form-check-input border-black me-2"
+                        value="" required>
+                    <label for="politica">He leído y acepto la Política de privacidad *</label>
+                </div>
+                <div class="d-block">
+                    <button class="btn btn-success d-flex align-items-start mt-4">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="bg-brown text-white d-flex justify-content-between">
+        <div class="d-flex align-items-center col-2">
+            <img src="imgs/logo-sinfondo.png" alt="logo" class="me-3">
+            <p class="m-0">Avenida de Viana n º 2-6, 26001,<br> Logroño, La Rioja. <br>
+                Tel: 941 008 900</p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center col-2">
+            <a href="#" class="text-decoration-none text-white">Política de privacidad</a>
+            <div class="vr h-50 my-auto"></div>
+            <a href="#" class="text-decoration-none text-white">Aviso legal</a>
+            <div class="vr  h-50 my-auto"></div>
+            <a href="#" class="text-decoration-none text-white">Politica de cookies</a>
+        </div>
+        <div class="d-flex col-1">
+            <img src="imgs/instagram.svg" alt="instagram" class="me-2" style="width: 36px;">
+            <img src="imgs/facebook.svg" alt="facebook" style="width: 36px;">
+        </div>
+    </div>
+    <button class="btnScrollTop bg-transparent border-0" style="width: 50px;">
+        <a href="#"><img src="imgs/flecha-arriba.svg" alt="arriba" class="w-100"></a>
+    </button>
+</body>
+
+</html>
