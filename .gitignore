@@ -1,0 +1,10 @@
+.tmp.driveupload/
+.tmp.drivedownload/
+.ds_store
+Thumbs.db
+*/.tmp*/
+tmp/
+*.tmp
+~*
+.Spotlight-V100
+.Trashes

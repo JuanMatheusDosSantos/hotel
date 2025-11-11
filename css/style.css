@@ -218,12 +218,29 @@ form {
 .w-20 {
     width: 20% !important;
 }
+
 .w-25 {
     width: 25% !important;
 }
-.w-30{
+
+.w-30 {
     width: 30% !important;
 }
-.btn-brown{
+
+.btn-brown {
     background-color: #623E37 !important;
+}
+
+@media screen and (max-width: 992px) {
+    iframe {
+        width: 100% !important;
+    }
+
+    .person1 {
+        width: 100% !important;
+    }
+
+    .person2 {
+        width: 80% !important;
+    }
 }
