@@ -74,8 +74,8 @@
     </div>
     <div class="container my-5">
         <form
-            class="p-3 shadow-lg rounded booking-form-container d-flex flex-column flex-xl-row justify-content-between align-items-center"
-            action="reservar.htm">
+                class="p-3 shadow-lg rounded booking-form-container d-flex flex-column flex-xl-row justify-content-between align-items-center"
+                action="reservar.htm">
             <div class="text-start me-4 col-md-12 col-xl-3">
                 <p class="h3 fw-bold mb-0 booking-cta">¡RESERVA AHORA!</p>
                 <p class="text-muted small booking-guarantee">MEJOR PRECIO GARANTIZADO</p>
@@ -84,10 +84,10 @@
             <div class="d-flex align-items-center date-selection col-md-12 col-xl-3">
 
                 <div class="text-center position-relative date-input-group"
-                    onclick="document.getElementById('entrada').showPicker()">
+                     onclick="document.getElementById('entrada').showPicker()">
                     <label for="entrada" class="form-label small text-muted mb-1">ENTRADA</label>
                     <input type="date" id="entrada" name="entrada" value="2025-11-03"
-                        class="position-absolute w-100 h-100 opacity-0 date-input">
+                           class="position-absolute w-100 h-100 opacity-0 date-input">
                     <span class="d-block date-display">03</span>
                     <span class="d-block small fw-bold text-uppercase month-year">NOV 2025</span>
                 </div>
@@ -95,28 +95,34 @@
                 <span class="date-separator mx-3">></span>
 
                 <div class="text-center position-relative date-input-group"
-                    onclick="document.getElementById('salida').showPicker()">
+                     onclick="document.getElementById('salida').showPicker()">
                     <label for="salida" class="form-label small text-muted mb-1">SALIDA</label>
                     <input type="date" id="salida" name="salida" value="2025-11-14"
-                        class="position-absolute w-100 h-100 opacity-0 date-input">
+                           class="position-absolute w-100 h-100 opacity-0 date-input">
                     <span class="d-block date-display">14</span>
                     <span class="d-block small fw-bold text-uppercase">NOV 2025</span>
                 </div>
             </div>
 
-            <div class="text-center mx-4">
-                <label class="form-label small text-muted mb-1">OCUPACIÓN</label>
+            <div class="text-center mx-4" role="group" aria-labelledby="ocupacion-titulo">
+                <div id="ocupacion-titulo" class="form-label small text-muted mb-1">OCUPACIÓN</div>
+
                 <div class="d-flex occupancy-inputs pop">
+
                     <div class="occupancy-item bg-light p-2 rounded d-flex align-items-center">
-                        <span class="me-1">👤</span>
-                        <span class="fw-bold">2</span>
+                        <label for="adultos" class="visually-hidden">Número de adultos</label>
+                        <span class="me-1" aria-hidden="true">👤</span>
+                        <input type="number" id="adultos" name="adultos" value="2" min="1" max="10"
+                               class="fw-bold border-0 text-center" style="width: 30px;">
                     </div>
+
                     <div class="occupancy-item bg-light p-2 rounded d-flex align-items-center">
-                        <span class="fw-bold">0</span>
+                        <label for="ninos" class="visually-hidden">Número de niños</label>
+                        <input type="number" id="ninos" name="ninos" value="0" min="0" max="5"
+                               class="fw-bold border-0 text-center" style="width: 30px;">
                     </div>
                 </div>
             </div>
-
             <div class="text-center mx-4 promo-code-group">
                 <label for="promo" class="form-label small text-muted mb-1">CÓDIGO PROMOCIONAL</label>
                 <input type="text" id="promo" name="promo" class="form-control-plaintext promo-input text-center">
@@ -193,7 +199,7 @@
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <div class="modal-body px-5"">
+                        <div class="modal-body px-5">
                             <p>La habitación doble estándar del Hotel F&G Logroño ofrece máximo confort en un espacio
                                 versátil con cama de matrimonio o 2 individuales, posibilidad de supletoria, vistas
                                 exteriores, baño privado, wifi gratis, minibar, TV satélite, teléfono, caja fuerte para
@@ -215,7 +221,7 @@
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <div class="modal-body px-5"">
+                        <div class="modal-body px-5">
                             <p>La habitación individual estándar del Hotel F&G Logroño es la opción ideal para los
                                 viajes de negocios o en grupo ya que permiten disfrutar de total intimidad en un espacio
                                 con todos los servicios: baño, secador, wifi gratis, teléfono y TV satélite, minibar,
@@ -237,7 +243,7 @@
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <div class="modal-body px-5"">
+                        <div class="modal-body px-5">
                             <p>La habitación triple estándar del Hotel F&G Logroño ofrece máximo confort en un espacio
                                 versátil con cama de matrimonio o 2 individuales con supletoria, vistas exteriores, baño
                                 privado, wifi gratis, minibar, TV satélite, teléfono, caja fuerte para ordenador,
@@ -259,7 +265,7 @@
                             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
-                        <div class="modal-body px-5"">
+                        <div class="modal-body px-5">
                             <p>Elige una de las junior suite del Hotel F&G Logroño y disfruta del mejor descanso en un
                                 espacio con 2 ambientes y todos los servicios al alcance de la mano: cómodas camas con
                                 posibilidad de supletoria, baño, secador, TV, teléfono, minibar, wifi gratis, zona de
@@ -304,8 +310,8 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body px-5"">
-                            <img src=" imgs/restaurante.webp" class="w-100">
+                    <div class="modal-body px-5">
+                            <img src="imgs/restaurante.webp" class="w-100" alt="imagen de un restaurante">
                     </div>
                     <div class=" modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -321,8 +327,8 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body px-5"">
-                            <img src=" imgs/spa.webp" class="w-100">
+                    <div class="modal-body px-5">
+                            <img src=" imgs/spa.webp" class="w-100" alt="imagen del spa">
                     </div>
                     <div class=" modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -338,8 +344,8 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body px-5"">
-                            <img src=" imgs/instalaciones.webp" class="w-100">
+                    <div class="modal-body px-5">
+                            <img src=" imgs/instalaciones.webp" class="w-100" alt="imagenes de las instalaciones">
                     </div>
                     <div class=" modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -355,8 +361,8 @@
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="modal-body px-5"">
-                            <img src=" imgs/cafeteria.webp" class="w-100">
+                    <div class="modal-body px-5">
+                            <img src=" imgs/cafeteria.webp" class="w-100" alt="imagen de la cafeteria">
                     </div>
                     <div class=" modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
