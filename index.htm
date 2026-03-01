@@ -3,17 +3,29 @@
 
     <head>
         <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-NGCBMD3Q');</script>
+        <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NGCBMD3Q');</script>
         <!-- End Google Tag Manager -->
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-3WGP5HEYXX"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
             gtag('js', new Date());
 
             gtag('config', 'G-3WGP5HEYXX');
@@ -36,8 +48,10 @@
 
     <body>
         <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NGCBMD3Q"
-                          height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NGCBMD3Q"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
         <!-- End Google Tag Manager (noscript) -->
         <nav class="navbar navbar-expand-lg bg-white sticky-top">
             <div class="container-fluid">
@@ -159,7 +173,7 @@
             <h2 class="pt-5 fs-1">Bienvenido al Hotel FG Logroño</h2>
 
             <section class="video-container">
-                <video autoplay muted loop playsinline poster="imgs/logo.png" class="video-background">
+                <video controls autoplay muted loop playsinline poster="imgs/logo.png" class="video-background">
 
                     <source src="videos/hotel-promo.mp4" type="video/mp4">
 
@@ -199,6 +213,16 @@
                             aria-label="Slide 4"></button>
                 </div>
                 <div class="carousel-inner">
+                    <div class="carousel-item active pointer" data-bs-toggle="modal" data-bs-target="#popup1">
+                        <img src="./imgs/images.jpg" alt="entrada del hotel" class="d-block w-100">
+                        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                        </div>
+                    </div>
+                    <div class="carousel-item active pointer" data-bs-toggle="modal" data-bs-target="#popup1">
+                        <img src="./imgs/tipos-habitaciones-hotel.jpg" alt="entrada del hotel" class="d-block w-100">
+                        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                        </div>
+                    </div>
                     <div class="carousel-item active pointer" data-bs-toggle="modal" data-bs-target="#popup1">
                         <img src="./imgs/habitacion1.webp" alt="entrada del hotel" class="d-block w-100">
                         <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
