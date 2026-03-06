@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel FG en Logroño</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+      /* ===== VARIABLES & BASE ===== */
+      :root {
+        --brown: #6b3c2c;
+        --brown-light: #8b5a47;
+        --gold: #c9a55a;
+        --gold-light: #e8c97a;
+        --green: #1a7350;
+        --grey: #f5f3f0;
+        --dark: #1a1a1a;
+        --white: #ffffff;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: 'Lato', sans-serif;
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+      /* ===== NAVBAR ===== */
+      .navbar {
+        background: rgba(255,255,255,0.97) !important;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+        transition: all 0.4s ease;
+        padding: 12px 24px;
+      }
+
+      .navbar.scrolled {
+        padding: 6px 24px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.15);
+      }
+
+      .navbar img { transition: all 0.4s ease; }
+
+      .nav-link-custom {
+        color: var(--brown) !important;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        font-size: 0.8rem;
+        text-decoration: none;
+        position: relative;
+        padding-bottom: 4px;
+      }
+
+      /* === ANIMACIÓN CSS 2D: Subrayado deslizante en nav === */
+      .nav-link-custom::after {
+        content: '';
+        position: absolute;
+        bottom: 0; left: 0;
+        width: 0; height: 2px;
+        background: var(--gold);
+        transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .nav-link-custom:hover::after { width: 100%; }
+      .nav-link-custom:hover { color: var(--brown) !important; }
+
+      /* ===== HERO CAROUSEL ===== */
+      #carousel1 { position: relative; }
+      #carousel1 .carousel-item { height: 92vh; min-height: 500px; }
+      #carousel1 .carousel-item img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        /* === ANIMACIÓN CSS 2D: Ken Burns zoom en imágenes del hero === */
+        animation: kenBurns 8s ease-in-out infinite alternate;
+      }
+
+      @keyframes kenBurns {
+        0%   { transform: scale(1) translate(0, 0); }
+        100% { transform: scale(1.08) translate(-1%, -1%); }
+      }
+
+      .carousel-caption {
+        position: absolute;
+        inset: 0;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.55));
+        padding: 0 20px;
+      }
+
+      .carousel-caption h1 {
+        font-size: clamp(2.5rem, 6vw, 5rem);
+        font-weight: 700;
+        color: var(--white);
+        letter-spacing: 2px;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        /* === ANIMACIÓN CSS 2D: Fade + slide-up en título hero === */
+        animation: heroTitleIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      .carousel-caption .hero-subtitle {
+        font-family: 'Lato', sans-serif;
+        font-size: clamp(1rem, 2.5vw, 1.5rem);
+        color: var(--gold-light);
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        font-weight: 300;
+        animation: heroTitleIn 1.2s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @keyframes heroTitleIn {
+        from { opacity: 0; transform: translateY(40px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .hero-scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        color: rgba(255,255,255,0.8);
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      /* === ANIMACIÓN CSS 2D: Flecha rebotante scroll indicator === */
+      .scroll-arrow {
+        width: 30px; height: 30px;
+        border-right: 2px solid var(--gold-light);
+        border-bottom: 2px solid var(--gold-light);
+        transform: rotate(45deg);
+        animation: scrollBounce 1.5s ease-in-out infinite;
+      }
+
+      @keyframes scrollBounce {
+        0%, 100% { transform: rotate(45deg) translateY(0); opacity: 1; }
+        50%       { transform: rotate(45deg) translateY(8px); opacity: 0.5; }
+      }
+
+      /* ===== BOOKING FORM ===== */
+      .booking-form-container {
+        background: var(--white);
+        border-radius: 12px;
+        padding: 24px 32px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        /* === ANIMACIÓN CSS 2D: Entrada del formulario === */
+        animation: slideUpFade 0.8s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      }
+
+      @keyframes slideUpFade {
+        from { opacity: 0; transform: translateY(30px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .booking-cta {
+        color: var(--brown);
+        font-family: 'Playfair Display', serif;
+        font-size: 1.6rem !important;
+      }
+
+      .booking-guarantee { color: var(--gold); font-weight: 700; letter-spacing: 1px; }
+
+      .date-display {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--brown);
+        line-height: 1;
+      }
+
+      .reserve-button {
+        background: linear-gradient(135deg, var(--brown) 0%, var(--brown-light) 100%);
+        border: none;
+        border-radius: 8px;
+        padding: 14px 36px !important;
+        letter-spacing: 2px;
+        font-size: 0.85rem;
+        /* === ANIMACIÓN CSS 2D: Transición + escala en hover === */
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease;
+        box-shadow: 0 4px 20px rgba(107,60,44,0.4);
+      }
+
+      .reserve-button:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 8px 30px rgba(107,60,44,0.5);
+        background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+      }
+
+      /* ===== WELCOME SECTION ===== */
+      .bg-brown { background-color: var(--brown); }
+      .bg-grey { background-color: var(--grey); }
+      .bg-green { background-color: var(--green); }
+
+      .welcome-section {
+        background: linear-gradient(135deg, var(--brown) 0%, #4a2318 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .welcome-section::before {
+        content: '';
+        position: absolute;
+        top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: radial-gradient(circle at 30% 50%, rgba(201,165,90,0.08) 0%, transparent 60%);
+        /* === ANIMACIÓN CSS 2D: Rotación suave del gradiente de fondo === */
+        animation: rotateBg 20s linear infinite;
+      }
+
+      @keyframes rotateBg {
+        from { transform: rotate(0deg); }
+        to   { transform: rotate(360deg); }
+      }
+
+      .gold-divider {
+        width: 60px; height: 2px;
+        background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        margin: 16px auto;
+        /* === ANIMACIÓN CSS 2D: Expansión de divider === */
+        animation: expandDivider 1s 0.5s ease both;
+      }
+
+      @keyframes expandDivider {
+        from { width: 0; opacity: 0; }
+        to   { width: 60px; opacity: 1; }
+      }
+
+      .video-container {
+        position: relative;
+        width: 85%;
+        max-width: 900px;
+        margin: 30px auto;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        /* === ANIMACIÓN CSS 3D: Perspectiva + rotación sutil en hover === */
+        transform-style: preserve-3d;
+        perspective: 1200px;
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+      }
+
+      .video-container:hover {
+        transform: rotateX(2deg) rotateY(-2deg) scale(1.02);
+        box-shadow: 0 50px 100px rgba(0,0,0,0.5);
+      }
+
+      .video-background {
+        width: 100%;
+        display: block;
+        border-radius: 12px;
+      }
+
+      /* ===== ROOMS SECTION ===== */
+      .rooms-section { padding: 80px 0; }
+
+      /* ===== FEATURE CARDS (Servicios) ===== */
+      .service-icon-wrap {
+        width: 80px; height: 80px;
+        background: var(--white);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 16px;
+        font-size: 2rem;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        /* === ANIMACIÓN CSS 3D: Flip en hover === */
+        transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
+        cursor: default;
+      }
+
+      .service-icon-wrap:hover {
+        transform: rotateY(180deg) scale(1.15);
+        box-shadow: 0 16px 40px rgba(107,60,44,0.25);
+      }
+
+      .service-card {
+        padding: 30px 20px;
+        text-align: center;
+        border-radius: 16px;
+        transition: background 0.3s ease, transform 0.3s ease;
+      }
+
+      .service-card:hover {
+        background: var(--white);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+      }
+
+      .service-card p {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--brown);
+        margin: 0;
+      }
+
+      /* ===== GALLERY ===== */
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        cursor: pointer;
+        aspect-ratio: 1;
+      }
+
+      .gallery-item img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        /* === ANIMACIÓN CSS 2D: Zoom en hover galería === */
+        transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .gallery-item:hover img { transform: scale(1.12); }
+
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(107,60,44,0.85), transparent);
+        opacity: 0;
+        /* === ANIMACIÓN CSS 2D: Fade overlay galería === */
+        transition: opacity 0.4s ease;
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+      }
+
+      .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+      .gallery-overlay span {
+        color: var(--white);
+        font-family: 'Playfair Display', serif;
+        font-size: 1.1rem;
+        transform: translateY(10px);
+        transition: transform 0.4s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay span { transform: translateY(0); }
+
+      /* ===== LOCATION SECTION ===== */
+      .location-text {
+        background: linear-gradient(135deg, var(--brown), #4a2318);
+        color: var(--white);
+        padding: 60px 40px;
+      }
+
+      /* ===== REVIEWS ===== */
+      .opiniones-section {
+        padding: 80px 0;
+        background: var(--grey);
+      }
+
+      .rating-circle {
+        min-width: 90px; height: 90px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--brown), var(--brown-light));
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        color: var(--white);
+        flex-shrink: 0;
+        box-shadow: 0 8px 25px rgba(107,60,44,0.3);
+      }
+
+      .rating-number { font-size: 1.6rem; font-weight: 700; line-height: 1; }
+      .rating-text { font-size: 0.55rem; letter-spacing: 1px; }
+
+      /* ===== STAR RATING (JS animated) ===== */
+      .stars-container { display: flex; gap: 6px; margin-bottom: 8px; }
+      .star {
+        color: var(--gold);
+        font-size: 1.2rem;
+        opacity: 0;
+        transform: scale(0) rotate(-30deg);
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .star.visible { opacity: 1; transform: scale(1) rotate(0); }
+
+      /* ===== NUMBERS COUNTER ===== */
+      .stats-section {
+        background: linear-gradient(135deg, var(--brown) 0%, #4a2318 100%);
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stats-section::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a55a' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+      }
+
+      .stat-item { text-align: center; position: relative; z-index: 1; }
+      .stat-number {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        color: var(--gold);
+        line-height: 1;
+      }
+      .stat-label {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-top: 8px;
+      }
+
+      /* ===== PROMO BANNER (3D Card Flip) ===== */
+      .promo-section { padding: 80px 0; }
+
+      .flip-card {
+        width: 100%; height: 220px;
+        perspective: 1200px;
+        cursor: pointer;
+      }
+
+      .flip-card-inner {
+        width: 100%; height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        /* === ANIMACIÓN CSS 3D: Tarjeta de flip 3D === */
+        transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+
+      .flip-card-front, .flip-card-back {
+        position: absolute; inset: 0;
+        backface-visibility: hidden;
+        border-radius: 16px;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        padding: 30px;
+        text-align: center;
+      }
+
+      .flip-card-front {
+        background: linear-gradient(135deg, var(--brown), var(--brown-light));
+        color: var(--white);
+      }
+
+      .flip-card-back {
+        background: linear-gradient(135deg, var(--gold), var(--gold-light));
+        color: var(--brown);
+        transform: rotateY(180deg);
+      }
+
+      .flip-card-front h4, .flip-card-back h4 {
+        font-size: 1.3rem; margin-bottom: 10px;
+      }
+
+      .flip-card-front .flip-icon { font-size: 2.5rem; margin-bottom: 12px; }
+
+      /* ===== NEWSLETTER ===== */
+      .newsletter-section {
+        background: var(--grey);
+        padding: 80px 0;
+      }
+
+      .newsletter-input {
+        border: none;
+        border-bottom: 2px solid var(--brown);
+        background: transparent;
+        padding: 10px 0;
+        width: 100%;
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.3s ease;
+      }
+
+      .newsletter-input:focus { border-color: var(--gold); }
+
+      .btn-subscribe {
+        background: linear-gradient(135deg, var(--brown), var(--brown-light));
+        color: var(--white);
+        border: none;
+        padding: 12px 40px;
+        border-radius: 50px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .btn-subscribe:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(107,60,44,0.4);
+        color: var(--white);
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        background: linear-gradient(135deg, #2a1810, var(--brown));
+        color: var(--white);
+        padding: 40px 0 20px;
+      }
+
+      .footer-link {
+        color: rgba(255,255,255,0.6);
+        text-decoration: none;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        transition: color 0.3s ease;
+      }
+      .footer-link:hover { color: var(--gold); }
+
+      .social-icon {
+        width: 40px; height: 40px;
+        border: 1px solid rgba(201,165,90,0.4);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: var(--gold);
+        font-size: 1.1rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .social-icon:hover {
+        background: var(--gold);
+        color: var(--brown);
+        border-color: var(--gold);
+      }
+
+      /* ===== SCROLL TO TOP ===== */
+      .btnScrollTop {
+        position: fixed;
+        bottom: 30px; right: 30px;
+        width: 50px; height: 50px;
+        background: var(--brown) !important;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: var(--gold);
+        font-size: 1.2rem;
+        text-decoration: none;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.4s ease;
+        z-index: 999;
+        box-shadow: 0 8px 25px rgba(107,60,44,0.4);
+      }
+      .btnScrollTop.visible { opacity: 1; transform: translateY(0); }
+      .btnScrollTop:hover {
+        background: var(--gold) !important;
+        color: var(--brown);
+        transform: translateY(-4px);
+      }
+
+      /* ===== SCROLL REVEAL (JS) ===== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .reveal.revealed { opacity: 1; transform: translateY(0); }
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+
+      /* ===== 3D TILT CARDS (Rooms) ===== */
+      .room-tilt-card {
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        /* === ANIMACIÓN CSS 3D: Tilt 3D interactivo (potenciado por JS) === */
+        transform-style: preserve-3d;
+        transition: box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
+      .room-tilt-card:hover { box-shadow: 0 30px 60px rgba(107,60,44,0.25); }
+
+      .room-tilt-card img {
+        width: 100%; height: 220px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .room-card-body {
+        padding: 24px;
+        background: var(--white);
+      }
+
+      .room-card-title {
+        font-family: 'Playfair Display', serif;
+        color: var(--brown);
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+      }
+
+      .room-card-price {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 1.3rem;
+      }
+
+      .room-tag {
+        display: inline-block;
+        background: var(--grey);
+        color: var(--brown);
+        font-size: 0.7rem;
+        padding: 3px 10px;
+        border-radius: 50px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .btn-room {
+        background: transparent;
+        border: 2px solid var(--brown);
+        color: var(--brown);
+        padding: 8px 24px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+      }
+      .btn-room:hover {
+        background: var(--brown);
+        color: var(--white);
+        transform: translateY(-2px);
+      }
+
+      /* ===== MODALS ===== */
+      .modal-header.bg-brown { background-color: var(--brown) !important; }
+
+      /* ===== AMENITIES PROGRESS BARS ===== */
+      .amenity-bar-wrap { margin-bottom: 16px; }
+      .amenity-label {
+        display: flex; justify-content: space-between;
+        font-size: 0.85rem; font-weight: 700;
+        color: var(--brown);
+        margin-bottom: 6px;
+      }
+      .amenity-bar {
+        height: 6px;
+        background: #e0d5ce;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .amenity-bar-fill {
+        height: 100%;
+        border-radius: 10px;
+        background: linear-gradient(90deg, var(--brown), var(--gold));
+        width: 0%;
+        /* === ANIMACIÓN CSS 2D: Barras de progreso animadas === */
+        transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* ===== LOADING SPINNER (entrada) ===== */
+      #page-loader {
+        position: fixed; inset: 0;
+        background: var(--brown);
+        z-index: 9999;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center;
+        /* === ANIMACIÓN CSS 2D: Fade out del loader === */
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+      #page-loader.hide { opacity: 0; visibility: hidden; }
+
+      .loader-logo {
+        color: var(--gold-light);
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        letter-spacing: 4px;
+        /* === ANIMACIÓN CSS 2D: Pulso en logo loader === */
+        animation: logoPulse 1.5s ease-in-out infinite;
+      }
+
+      .loader-bar {
+        width: 200px; height: 2px;
+        background: rgba(255,255,255,0.2);
+        margin-top: 20px;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .loader-bar-fill {
+        height: 100%;
+        background: var(--gold);
+        width: 0%;
+        animation: loaderFill 1.5s ease forwards;
+      }
+
+      @keyframes logoPulse {
+        0%, 100% { opacity: 1; }
+        50%       { opacity: 0.5; }
+      }
+
+      @keyframes loaderFill {
+        0%   { width: 0%; }
+        100% { width: 100%; }
+      }
+
+      /* ===== FLOATING PARTICLES (JS) ===== */
+      #particles-canvas {
+        position: fixed;
+        top: 0; left: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+      }
+
+      /* Section utility */
+      .section-tag {
+        display: inline-block;
+        background: rgba(201,165,90,0.15);
+        color: var(--gold);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border-radius: 50px;
+        margin-bottom: 16px;
+        border: 1px solid rgba(201,165,90,0.3);
+      }
+
+      @media (max-width: 768px) {
+        .video-container { width: 95%; }
+        .flip-card { height: 180px; }
+        .stat-number { font-size: 2.5rem; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- PAGE LOADER -->
+    <div id="page-loader">
+      <div class="loader-logo">HOTEL FG</div>
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top" id="mainNav">
+      <div class="container">
+        <a href="#" class="navbar-brand">
+          <img src="imgs/logo.png" alt="Hotel FG" height="40" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+          <span style="display:none; font-family:'Playfair Display',serif; color:var(--brown); font-size:1.4rem; font-weight:700;">HOTEL FG</span>
+        </a>
+        <div class="d-flex align-items-center gap-3">
+          <a href="miReserva.htm" class="nav-link-custom">MI RESERVA</a>
+          <div class="vr"></div>
+          <select class="border-0 bg-transparent" style="font-size:0.8rem; color:var(--brown); font-weight:700; outline:none; cursor:pointer;">
+            <option value="es">ES</option>
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO CAROUSEL -->
+    <div id="carousel1" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./imgs/hotel-home.webp" alt="Entrada del hotel" onerror="this.src='https://picsum.photos/1920/1080?random=1'">
+          <div class="carousel-caption">
+            <div class="hero-subtitle mb-3">La Rioja · España</div>
+            <h1>Hotel FG Logroño</h1>
+            <div class="hero-subtitle mt-3">Modernas · Funcionales · Luminosas</div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./imgs/interior-home.webp" alt="Interior del hotel" onerror="this.src='https://picsum.photos/1920/1080?random=2'">
+          <div class="carousel-caption">
+            <div class="hero-subtitle mb-3">Experiencia única</div>
+            <h1>Confort & Elegancia</h1>
+            <div class="hero-subtitle mt-3">En el corazón de Logroño</div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./imgs/vinos-home.webp" alt="Bodega de vinos" onerror="this.src='https://picsum.photos/1920/1080?random=3'">
+          <div class="carousel-caption">
+            <div class="hero-subtitle mb-3">Gastronomía riojana</div>
+            <h1>Vinos & Tapas</h1>
+            <div class="hero-subtitle mt-3">La mejor selección de La Rioja</div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./imgs/puente-home.webp" alt="Puente sobre el Ebro" onerror="this.src='https://picsum.photos/1920/1080?random=4'">
+          <div class="carousel-caption">
+            <div class="hero-subtitle mb-3">Ubicación privilegiada</div>
+            <h1>Junto al Ebro</h1>
+            <div class="hero-subtitle mt-3">Casco histórico · Logroño</div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#carousel1" data-bs-slide-to="3"></button>
+      </div>
+      <div class="hero-scroll-indicator">
+        <span>SCROLL</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </div>
+
+    <!-- BOOKING FORM -->
+    <div class="container my-5">
+      <form class="booking-form-container d-flex flex-column flex-xl-row justify-content-between align-items-center gap-3" action="reservar.htm">
+        <div class="text-start">
+          <p class="booking-cta mb-0">¡RESERVA AHORA!</p>
+          <p class="booking-guarantee small mb-0">✦ MEJOR PRECIO GARANTIZADO</p>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <div class="text-center" onclick="document.getElementById('entrada').showPicker()">
+            <label class="small text-muted d-block" style="letter-spacing:1px;">ENTRADA</label>
+            <input type="date" id="entrada" name="entrada" value="2025-11-03" class="position-absolute opacity-0" style="width:1px;height:1px;">
+            <span class="date-display" id="entradaDisplay">03</span>
+            <span class="d-block small fw-bold" style="color:var(--brown);letter-spacing:1px;">NOV 2025</span>
+          </div>
+          <span style="color:var(--gold); font-size:1.5rem;">›</span>
+          <div class="text-center" onclick="document.getElementById('salida').showPicker()">
+            <label class="small text-muted d-block" style="letter-spacing:1px;">SALIDA</label>
+            <input type="date" id="salida" name="salida" value="2025-11-14" class="position-absolute opacity-0" style="width:1px;height:1px;">
+            <span class="date-display" id="salidaDisplay">14</span>
+            <span class="d-block small fw-bold" style="color:var(--brown);letter-spacing:1px;">NOV 2025</span>
+          </div>
+        </div>
+        <div class="text-center">
+          <div class="small text-muted mb-1" style="letter-spacing:1px;">OCUPACIÓN</div>
+          <div class="d-flex gap-2">
+            <div class="d-flex align-items-center gap-1 bg-light rounded p-2">
+              <span>👤</span>
+              <input type="number" name="adultos" value="2" min="1" max="10" class="border-0 bg-transparent fw-bold text-center" style="width:30px; outline:none;">
+            </div>
+            <div class="d-flex align-items-center gap-1 bg-light rounded p-2">
+              <span>🧒</span>
+              <input type="number" name="ninos" value="0" min="0" max="5" class="border-0 bg-transparent fw-bold text-center" style="width:30px; outline:none;">
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <label class="small text-muted d-block mb-1" style="letter-spacing:1px;">CÓDIGO PROMO</label>
+          <input type="text" name="promo" class="border-0 border-bottom text-center" style="border-color:var(--brown)!important; background:transparent; outline:none; width:120px; padding:4px 0;">
+        </div>
+        <button type="submit" class="reserve-button text-white fw-bold text-uppercase">RESERVAR</button>
+      </form>
+    </div>
+
+    <!-- WELCOME SECTION -->
+    <section class="welcome-section text-white text-center py-5">
+      <div class="container position-relative">
+        <div class="section-tag reveal">Bienvenidos</div>
+        <h2 class="display-5 fw-bold reveal reveal-delay-1" style="font-style:italic;">Hotel FG Logroño</h2>
+        <div class="gold-divider reveal reveal-delay-2"></div>
+        <div class="video-container reveal reveal-delay-2">
+          <video controls autoplay muted loop playsinline poster="imgs/logo.png" class="video-background">
+            <source src="videos/hotel-promo.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de vídeo.
+          </video>
+        </div>
+        <p class="mx-auto reveal reveal-delay-3" style="max-width:700px; font-size:1.1rem; line-height:1.8; color:rgba(255,255,255,0.85);">
+          El Hotel F&G Logroño te invita a conocer un hotel en el casco histórico de la ciudad: un alojamiento donde se combinan modernidad, tradición y el gusto por lo auténtico. Ideal para viajes de negocios, banquetes e incentivos.
+        </p>
+        <p class="reveal reveal-delay-4" style="color:var(--gold-light); font-size:1rem;">
+          Jacuzzi · Sauna · Gimnasio · Restaurante · Bodega de vinos · WiFi gratis
+        </p>
+      </div>
+    </section>
+
+    <!-- STATS SECTION (JS Counter Animation) -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="row g-4 text-center">
+          <div class="col-6 col-md-3 stat-item reveal">
+            <div class="stat-number" data-target="25">0</div>
+            <div class="stat-label">Años de experiencia</div>
+          </div>
+          <div class="col-6 col-md-3 stat-item reveal reveal-delay-1">
+            <div class="stat-number" data-target="87">0</div>
+            <div class="stat-label">Habitaciones</div>
+          </div>
+          <div class="col-6 col-md-3 stat-item reveal reveal-delay-2">
+            <div class="stat-number" data-target="98">0</div>
+            <div class="stat-label">% Satisfacción</div>
+          </div>
+          <div class="col-6 col-md-3 stat-item reveal reveal-delay-3">
+            <div class="stat-number" data-target="4">0</div>
+            <div class="stat-label">Premios de calidad</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROOMS SECTION -->
+    <section class="rooms-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-tag reveal">Alojamiento</div>
+          <h2 class="display-6 fw-bold reveal reveal-delay-1">Nuestras <em>Habitaciones</em></h2>
+          <p class="text-muted mx-auto reveal reveal-delay-2" style="max-width:600px;">Modernas, funcionales y luminosas, pensadas para que cada estancia sea una experiencia memorable.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="room-tilt-card" data-bs-toggle="modal" data-bs-target="#popup1">
+              <img src="./imgs/images.jpg" alt="Habitación Doble Estándar" onerror="this.src='https://picsum.photos/400/300?random=10'">
+              <div class="room-card-body">
+                <div class="room-tag">Más popular</div>
+                <div class="room-card-title">Doble Estándar</div>
+                <div class="stars-container" data-rating="4"></div>
+                <p class="text-muted small mb-3">Cama de matrimonio, vistas exteriores, minibar y WiFi.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn-room">Ver más</button>
+                  <span class="room-card-price">desde 79€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-1">
+            <div class="room-tilt-card" data-bs-toggle="modal" data-bs-target="#popup2">
+              <img src="./imgs/tipos-habitaciones-hotel.jpg" alt="Individual" onerror="this.src='https://picsum.photos/400/300?random=11'">
+              <div class="room-card-body">
+                <div class="room-tag">Negocios</div>
+                <div class="room-card-title">Uso Individual</div>
+                <div class="stars-container" data-rating="4"></div>
+                <p class="text-muted small mb-3">Ideal para viajeros de negocios. Total intimidad y confort.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn-room">Ver más</button>
+                  <span class="room-card-price">desde 65€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-2">
+            <div class="room-tilt-card" data-bs-toggle="modal" data-bs-target="#popup3">
+              <img src="./imgs/habitacion1.webp" alt="Triple" onerror="this.src='https://picsum.photos/400/300?random=12'">
+              <div class="room-card-body">
+                <div class="room-tag">Familia</div>
+                <div class="room-card-title">Triple Estándar</div>
+                <div class="stars-container" data-rating="4"></div>
+                <p class="text-muted small mb-3">Cama doble + supletoria. Perfecta para familias o grupos.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn-room">Ver más</button>
+                  <span class="room-card-price">desde 95€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal reveal-delay-3">
+            <div class="room-tilt-card" data-bs-toggle="modal" data-bs-target="#popup4">
+              <img src="./imgs/habitacion3.webp" alt="Junior Suite" onerror="this.src='https://picsum.photos/400/300?random=13'">
+              <div class="room-card-body">
+                <div class="room-tag">Premium</div>
+                <div class="room-card-title">Junior Suite</div>
+                <div class="stars-container" data-rating="5"></div>
+                <p class="text-muted small mb-3">2 ambientes, zona de estar y todos los servicios premium.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <button class="btn-room">Ver más</button>
+                  <span class="room-card-price">desde 139€</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="py-5" style="background:var(--grey);">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-tag reveal">Espacios</div>
+          <h2 class="display-6 fw-bold reveal reveal-delay-1">Galería <em>de Fotos</em></h2>
+        </div>
+        <div class="row g-3">
+          <div class="col-6 col-md-3 reveal">
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#popup5">
+              <img src="imgs/restaurante.webp" alt="Restaurante" onerror="this.src='https://picsum.photos/400/400?random=20'">
+              <div class="gallery-overlay"><span>Restaurante</span></div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 reveal reveal-delay-1">
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#popup6">
+              <img src="imgs/spa.webp" alt="Spa & Gimnasio" onerror="this.src='https://picsum.photos/400/400?random=21'">
+              <div class="gallery-overlay"><span>Spa & Gimnasio</span></div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 reveal reveal-delay-2">
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#popup7">
+              <img src="imgs/instalaciones.webp" alt="Instalaciones" onerror="this.src='https://picsum.photos/400/400?random=22'">
+              <div class="gallery-overlay"><span>Instalaciones</span></div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3 reveal reveal-delay-3">
+            <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#popup8">
+              <img src="imgs/cafeteria.webp" alt="Cafetería" onerror="this.src='https://picsum.photos/400/400?random=23'">
+              <div class="gallery-overlay"><span>Cafetería</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section class="py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="section-tag reveal">Instalaciones</div>
+          <h2 class="display-6 fw-bold reveal reveal-delay-1">Nuestros <em>Servicios</em></h2>
+          <p class="text-muted reveal reveal-delay-2">Todo lo que necesitas para una estancia perfecta</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-6 col-md-4 col-lg reveal"><div class="service-card"><div class="service-icon-wrap">♿</div><p>Accesibilidad</p></div></div>
+          <div class="col-6 col-md-4 col-lg reveal reveal-delay-1"><div class="service-card"><div class="service-icon-wrap">☕</div><p>Cafetería</p></div></div>
+          <div class="col-6 col-md-4 col-lg reveal reveal-delay-2"><div class="service-card"><div class="service-icon-wrap">🏋️</div><p>Gimnasio</p></div></div>
+          <div class="col-6 col-md-4 col-lg reveal reveal-delay-3"><div class="service-card"><div class="service-icon-wrap">💆</div><p>Spa & Sauna</p></div></div>
+          <div class="col-6 col-md-4 col-lg reveal"><div class="service-card"><div class="service-icon-wrap">🚗</div><p>Parking</p></div></div>
+          <div class="col-6 col-md-4 col-lg reveal reveal-delay-1"><div class="service-card"><div class="service-icon-wrap">🍽️</div><p>Restaurante</p></div></div>
+          <div class="col-6 col-md-4 col-lg reveal reveal-delay-2"><div class="service-card"><div class="service-icon-wrap">🌡️</div><p>A/C</p></div></div>
+          <div class="col-6 col-md-4 col-lg reveal reveal-delay-3"><div class="service-card"><div class="service-icon-wrap">🍷</div><p>Bodega</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AMENITIES (Progress Bars) -->
+    <section class="py-5" style="background:var(--grey);">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-md-6 reveal">
+            <div class="section-tag">Calidad certificada</div>
+            <h2 class="display-6 fw-bold mt-2">¿Por qué <em>elegirnos?</em></h2>
+            <p class="text-muted mt-3 mb-4">Nuestros huéspedes valoran especialmente estos aspectos de su estancia en Hotel FG Logroño.</p>
+            <div class="amenity-bar-wrap">
+              <div class="amenity-label"><span>Limpieza</span><span>98%</span></div>
+              <div class="amenity-bar"><div class="amenity-bar-fill" data-width="98"></div></div>
+            </div>
+            <div class="amenity-bar-wrap">
+              <div class="amenity-label"><span>Atención al cliente</span><span>95%</span></div>
+              <div class="amenity-bar"><div class="amenity-bar-fill" data-width="95"></div></div>
+            </div>
+            <div class="amenity-bar-wrap">
+              <div class="amenity-label"><span>Ubicación</span><span>97%</span></div>
+              <div class="amenity-bar"><div class="amenity-bar-fill" data-width="97"></div></div>
+            </div>
+            <div class="amenity-bar-wrap">
+              <div class="amenity-label"><span>Relación calidad-precio</span><span>92%</span></div>
+              <div class="amenity-bar"><div class="amenity-bar-fill" data-width="92"></div></div>
+            </div>
+            <div class="amenity-bar-wrap">
+              <div class="amenity-label"><span>Gastronomía</span><span>94%</span></div>
+              <div class="amenity-bar"><div class="amenity-bar-fill" data-width="94"></div></div>
+            </div>
+          </div>
+          <div class="col-md-6 reveal reveal-delay-2">
+            <div class="row g-3">
+              <div class="col-6"><div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front"><div class="flip-icon">📍</div><h4>Ubicación Perfecta</h4><p class="small opacity-75">Casco histórico de Logroño</p></div>
+                  <div class="flip-card-back"><h4>A 500m</h4><p class="small">Calle Laurel · Tapas · Museos · Camino de Santiago</p></div>
+                </div>
+              </div></div>
+              <div class="col-6"><div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front"><div class="flip-icon">🍷</div><h4>Bodega Riojana</h4><p class="small opacity-75">Selección exclusiva de vinos</p></div>
+                  <div class="flip-card-back"><h4>La Rioja</h4><p class="small">Denominación de Origen · Catas guiadas disponibles</p></div>
+                </div>
+              </div></div>
+              <div class="col-6"><div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front"><div class="flip-icon">💆</div><h4>Spa & Wellness</h4><p class="small opacity-75">Jacuzzi · Sauna · Gym</p></div>
+                  <div class="flip-card-back"><h4>Relax Total</h4><p class="small">Abierto todos los días · Acceso libre para huéspedes</p></div>
+                </div>
+              </div></div>
+              <div class="col-6"><div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front"><div class="flip-icon">🏆</div><h4>Precio Garantizado</h4><p class="small opacity-75">Mejor precio aquí</p></div>
+                  <div class="flip-card-back"><h4>Reserva directa</h4><p class="small">Sin intermediarios · Ofertas exclusivas online</p></div>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <div class="d-flex flex-column flex-xl-row">
+      <div class="location-text d-flex align-items-center col-xl-4 reveal">
+        <div class="py-5 px-4">
+          <div class="section-tag" style="border-color:rgba(201,165,90,0.4);">Cómo llegar</div>
+          <h3 class="fw-bold mt-3" style="font-style:italic;">En el corazón de Logroño</h3>
+          <div style="width:40px;height:2px;background:var(--gold);margin:16px 0;"></div>
+          <p style="color:rgba(255,255,255,0.85); line-height:1.8;">
+            Hotel ideal para recorrer el centro histórico de Logroño, visitar la Concatedral de Santa María La Redonda, la Casa de las Ciencias y el Parque de La Concordia. A escasos metros de la famosa calle Laurel y el Camino de Santiago.
+          </p>
+          <p class="fw-bold mt-3" style="color:var(--gold-light);">
+            📍 Avenida de Viana nº 2-6, 26001, Logroño<br>
+            📞 Tel: 941 008 900
+          </p>
+        </div>
+      </div>
+      <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d23546.84673471179!2d-2.444985!3d42.46272!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5aab3fab32b0b1%3A0x3bac8e278c4c62de!2sHotel%20Fg%20Logro%C3%B1o!5e0!3m2!1ses!2sus!4v1762431044247!5m2!1ses!2sus"
+              style="border:0; flex:1; min-height:450px;" allowfullscreen loading="lazy" title="Ubicación Hotel FG">
+      </iframe>
+    </div>
+
+    <!-- REVIEWS -->
+    <section class="opiniones-section">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-4 reveal">
+            <div class="section-tag">Testimonios</div>
+            <h2 class="display-6 fw-bold mt-2">Opiniones <em style="font-weight:300;">de clientes</em></h2>
+            <p class="text-muted mt-3">La satisfacción de nuestros huéspedes es nuestra mayor recompensa.</p>
+            <button class="btn-subscribe mt-2" style="color:white;">Agregar opinión</button>
+          </div>
+          <div class="col-lg-1 d-none d-lg-flex justify-content-center">
+            <div class="vr" style="height:200px; background:rgba(107,60,44,0.2);"></div>
+          </div>
+          <div class="col-lg-7 reveal reveal-delay-2">
+            <div id="reviewCarousel" class="carousel slide" data-bs-ride="false">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="d-flex gap-4">
+                    <div class="rating-circle flex-shrink-0">
+                      <span class="rating-number">9.0</span>
+                      <span class="rating-text">EXCELENTE</span>
+                    </div>
+                    <div>
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <h5 class="mb-0" style="font-family:'Playfair Display',serif;">Isabel</h5>
+                        <span class="text-muted small">22/08/2022 · España</span>
+                      </div>
+                      <div class="stars-container mb-2" data-rating="4"></div>
+                      <p class="text-muted">Hotel muy bien ubicado, aún estando en pleno centro histórico era muy tranquilo. Las habitaciones bien de tamaño. El desayuno bien y el personal fantástico.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="d-flex gap-4">
+                    <div class="rating-circle flex-shrink-0">
+                      <span class="rating-number">10</span>
+                      <span class="rating-text">EXCELENTE</span>
+                    </div>
+                    <div>
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <h5 class="mb-0" style="font-family:'Playfair Display',serif;">Manuela</h5>
+                        <span class="text-muted small">07/07/2021 · España</span>
+                      </div>
+                      <div class="stars-container mb-2" data-rating="5"></div>
+                      <p class="text-muted">El hotel es muy limpio y cómodo, pasé unas increíbles vacaciones con mi familia. Me volvería a hospedar sin dudarlo.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="d-flex gap-4">
+                    <div class="rating-circle flex-shrink-0">
+                      <span class="rating-number">9.0</span>
+                      <span class="rating-text">EXCELENTE</span>
+                    </div>
+                    <div>
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <h5 class="mb-0" style="font-family:'Playfair Display',serif;">Carolina</h5>
+                        <span class="text-muted small">07/07/2021 · Colombia</span>
+                      </div>
+                      <div class="stars-container mb-2" data-rating="5"></div>
+                      <p class="text-muted">Este hotel es maravilloso, las habitaciones son muy cómodas y el desayuno es exquisito. Lo recomiendo 100%.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-3 mt-4">
+                <button class="btn btn-outline-secondary btn-sm" data-bs-target="#reviewCarousel" data-bs-slide="prev">‹</button>
+                <span id="reviewPagination" class="text-muted small">1 / 3</span>
+                <button class="btn btn-outline-secondary btn-sm" data-bs-target="#reviewCarousel" data-bs-slide="next">›</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-5">
+          <div class="col-md-6 reveal">
+            <div class="section-tag">Estamos aquí para ayudarte</div>
+            <h2 class="display-6 fw-bold mt-2"><em>Contáctanos</em></h2>
+            <p class="text-muted mt-3">Consulta disponibilidad, organiza tu evento o simplemente haznos llegar cualquier duda.</p>
+            <div class="mt-4">
+              <p><strong style="color:var(--brown);">📧 Email:</strong> reservas.logrono@fghotels.com</p>
+              <p><strong style="color:var(--brown);">📞 Teléfono:</strong> 941 008 900</p>
+              <p><strong style="color:var(--brown);">📍 Dirección:</strong> Avenida de Viana nº 2-6, 26001, Logroño</p>
+            </div>
+          </div>
+          <div class="col-md-6 reveal reveal-delay-2">
+            <div class="p-4 rounded-3" style="background:var(--grey);">
+              <div class="mb-3">
+                <label class="form-label fw-bold small" style="letter-spacing:1px;">NOMBRE *</label>
+                <input type="text" class="form-control rounded-2" placeholder="Tu nombre completo" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold small" style="letter-spacing:1px;">CORREO ELECTRÓNICO *</label>
+                <input type="email" class="form-control rounded-2" placeholder="correo@ejemplo.com" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold small" style="letter-spacing:1px;">TELÉFONO *</label>
+                <input type="tel" class="form-control rounded-2" placeholder="+34 000 000 000" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold small" style="letter-spacing:1px;">ASUNTO</label>
+                <select class="form-select rounded-2">
+                  <option>Pregunta general</option>
+                  <option>Mi reserva</option>
+                  <option>Organizar evento</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold small" style="letter-spacing:1px;">COMENTARIO *</label>
+                <textarea class="form-control rounded-2" rows="3" placeholder="¿En qué podemos ayudarte?"></textarea>
+              </div>
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" required>
+                <label class="form-check-label small">He leído y acepto la Política de privacidad *</label>
+              </div>
+              <button class="btn-subscribe w-100 d-block text-white fw-bold">ENVIAR MENSAJE</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter-section">
+      <div class="container text-center">
+        <div class="section-tag reveal">Mantente informado</div>
+        <h2 class="display-6 fw-bold reveal reveal-delay-1">Boletín de <em>noticias</em></h2>
+        <p class="text-muted mx-auto reveal reveal-delay-2" style="max-width:500px;">Suscríbete y recibe nuestras mejores ofertas directamente en tu bandeja de correo.</p>
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mt-4 reveal reveal-delay-3" style="max-width:500px; margin:0 auto;">
+          <input type="email" class="newsletter-input flex-grow-1" placeholder="tu@correo.com">
+          <button class="btn-subscribe flex-shrink-0" style="color:white;">SUSCRIBIRME</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-md-4">
+            <div style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold); font-weight:700;">HOTEL FG</div>
+            <p class="small mt-2" style="color:rgba(255,255,255,0.6);">Avenida de Viana nº 2-6<br>26001, Logroño, La Rioja<br>Tel: 941 008 900</p>
+          </div>
+          <div class="col-md-4 text-center">
+            <div class="d-flex justify-content-center gap-3">
+              <a href="#" class="footer-link">Política de privacidad</a>
+              <span style="color:rgba(255,255,255,0.2);">|</span>
+              <a href="#" class="footer-link">Aviso legal</a>
+              <span style="color:rgba(255,255,255,0.2);">|</span>
+              <a href="#" class="footer-link">Cookies</a>
+            </div>
+            <p class="small mt-3" style="color:rgba(255,255,255,0.4);">© 2025 Hotel FG Logroño · Todos los derechos reservados</p>
+          </div>
+          <div class="col-md-4 d-flex justify-content-md-end gap-3">
+            <a href="#" class="social-icon">📸</a>
+            <a href="#" class="social-icon">👍</a>
+            <a href="#" class="social-icon">🐦</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- SCROLL TO TOP -->
+    <a href="#" class="btnScrollTop" id="scrollTop" title="Volver arriba">↑</a>
+
+    <!-- MODALS -->
+    <div class="modal fade" id="popup1" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-brown text-white"><h5 class="modal-title w-100 text-center" style="font-family:'Playfair Display',serif;">Habitación Doble Estándar</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body p-4"><p>La habitación doble estándar ofrece máximo confort con cama de matrimonio o 2 individuales, vistas exteriores, baño privado, WiFi gratis, minibar, TV satélite, teléfono y caja fuerte.</p></div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button><a href="reservar.htm" class="btn" style="background:var(--brown);color:white;">Reservar</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="popup2" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-brown text-white"><h5 class="modal-title w-100 text-center" style="font-family:'Playfair Display',serif;">Habitación Doble Uso Individual</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body p-4"><p>Ideal para viajeros de negocios. Disfruta de total intimidad con todos los servicios: baño, WiFi gratis, minibar, caja fuerte para portátil y TV satélite.</p></div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button><a href="reservar.htm" class="btn" style="background:var(--brown);color:white;">Reservar</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="popup3" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-brown text-white"><h5 class="modal-title w-100 text-center" style="font-family:'Playfair Display',serif;">Habitación Triple</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body p-4"><p>Habitación triple con cama de matrimonio o 2 individuales con supletoria, vistas exteriores, baño privado, WiFi gratis, minibar y todos los servicios estándar.</p></div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button><a href="reservar.htm" class="btn" style="background:var(--brown);color:white;">Reservar</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="popup4" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-brown text-white"><h5 class="modal-title w-100 text-center" style="font-family:'Playfair Display',serif;">Junior Suite</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body p-4"><p>Disfruta del mejor descanso en un espacio con 2 ambientes. Zona de estar, cómodas camas con supletoria, baño de lujo, WiFi gratis, minibar y todos los servicios premium.</p></div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button><a href="reservar.htm" class="btn" style="background:var(--brown);color:white;">Reservar</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="popup5" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-brown text-white"><h5 class="modal-title w-100 text-center" style="font-family:'Playfair Display',serif;">Restaurante</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body p-4"><img src="imgs/restaurante.webp" class="w-100 rounded" alt="Restaurante"></div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="popup6" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-brown text-white"><h5 class="modal-title w-100 text-center" style="font-family:'Playfair Display',serif;">Spa & Gimnasio</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body p-4"><img src="imgs/spa.webp" class="w-100 rounded" alt="Spa"></div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="popup7" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-brown text-white"><h5 class="modal-title w-100 text-center" style="font-family:'Playfair Display',serif;">Instalaciones</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body p-4"><img src="imgs/instalaciones.webp" class="w-100 rounded" alt="Instalaciones"></div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="popup8" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-brown text-white"><h5 class="modal-title w-100 text-center" style="font-family:'Playfair Display',serif;">Cafetería</h5><button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button></div>
+          <div class="modal-body p-4"><img src="imgs/cafeteria.webp" class="w-100 rounded" alt="Cafetería"></div>
+          <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* ================================================================
+         ANIMACIONES JAVASCRIPT
+      ================================================================ */
+
+      /* --- 1. PAGE LOADER (JS Animation) --- */
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loader = document.getElementById('page-loader');
+          loader.classList.add('hide');
+          setTimeout(() => loader.remove(), 600);
+        }, 1600);
+      });
+
+      /* --- 2. NAVBAR SCROLL EFFECT (JS Animation) --- */
+      const nav = document.getElementById('mainNav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 80);
+        // Scroll to top button
+        const btn = document.getElementById('scrollTop');
+        btn.classList.toggle('visible', window.scrollY > 400);
+      });
+
+      /* --- 3. INTERSECTION OBSERVER – SCROLL REVEAL (JS Animation) --- */
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            // Trigger child animations when section is visible
+            triggerChildAnimations(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      function triggerChildAnimations(el) {
+        // Animate progress bars
+        el.querySelectorAll('.amenity-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        // Animate stars
+        el.querySelectorAll('.stars-container').forEach(container => {
+          animateStars(container);
+        });
+        // Animate counters
+        el.querySelectorAll('.stat-number[data-target]').forEach(counter => {
+          animateCounter(counter);
+        });
+      }
+
+      /* --- 4. PROGRESS BARS (triggered by scroll reveal) --- */
+      // Also trigger for elements already visible
+      const progressObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.amenity-bar-fill').forEach(bar => {
+              bar.style.width = bar.dataset.width + '%';
+            });
+            progressObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.amenity-bar-wrap').forEach(el => {
+        const parent = el.closest('section') || el.parentElement;
+        progressObserver.observe(parent);
+      });
+
+      /* --- 5. ANIMATED COUNTER (JS Animation) --- */
+      function animateCounter(el) {
+        if (el.dataset.animated) return;
+        el.dataset.animated = 'true';
+        const target = parseInt(el.dataset.target);
+        const duration = 2000;
+        const startTime = performance.now();
+
+        function update(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target);
+          if (progress < 1) requestAnimationFrame(update);
+          else el.textContent = target;
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      // Observe stats section separately
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.querySelectorAll('.stat-number[data-target]').forEach(animateCounter);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      document.querySelectorAll('.stats-section').forEach(el => statsObserver.observe(el));
+
+      /* --- 6. STAR RATING ANIMATION (JS Animation) --- */
+      function animateStars(container) {
+        if (container.dataset.animated) return;
+        container.dataset.animated = 'true';
+        const rating = parseInt(container.dataset.rating) || 4;
+        container.innerHTML = '';
+        for (let i = 1; i <= 5; i++) {
+          const star = document.createElement('span');
+          star.className = 'star';
+          star.textContent = i <= rating ? '★' : '☆';
+          if (i > rating) star.style.color = '#ccc';
+          container.appendChild(star);
+          setTimeout(() => star.classList.add('visible'), i * 100);
+        }
+      }
+
+      // Init all visible star containers + observe rest
+      document.querySelectorAll('.stars-container').forEach(container => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              animateStars(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        observer.observe(container);
+      });
+
+      /* --- 7. REVIEW CAROUSEL PAGINATION (JS) --- */
+      const reviewCarousel = document.getElementById('reviewCarousel');
+      const reviewPagination = document.getElementById('reviewPagination');
+      if (reviewCarousel && reviewPagination) {
+        const items = reviewCarousel.querySelectorAll('.carousel-item');
+        reviewCarousel.addEventListener('slid.bs.carousel', e => {
+          const active = Array.from(items).findIndex(i => i.classList.contains('active'));
+          reviewPagination.textContent = `${active + 1} / ${items.length}`;
+        });
+      }
+
+      /* --- 8. 3D TILT EFFECT on room cards (JS Animation) --- */
+      document.querySelectorAll('.room-tilt-card').forEach(card => {
+        card.addEventListener('mousemove', e => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          card.style.transform = `perspective(800px) rotateX(${-y * 10}deg) rotateY(${x * 10}deg) scale(1.03)`;
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
+          card.style.transition = 'transform 0.5s ease';
+        });
+        card.addEventListener('mouseenter', () => {
+          card.style.transition = 'transform 0.1s ease';
+        });
+      });
+
+      /* --- 9. TYPING EFFECT in Hero (JS Animation) --- */
+      const heroSubtitles = document.querySelectorAll('.hero-subtitle');
+      // Already handled by CSS animation, but we add cursor blink via JS
+      // for the first carousel item
+      const firstCaptionTitle = document.querySelector('#carousel1 .carousel-item.active h1');
+
+      /* --- 10. SMOOTH FORM INPUT FOCUS ANIMATION (JS Animation) --- */
+      document.querySelectorAll('.form-control, .newsletter-input').forEach(input => {
+        input.addEventListener('focus', function() {
+          this.closest('.mb-3, .d-flex')?.querySelectorAll('label')[0]
+                  ?.style.setProperty('color', 'var(--brown)');
+        });
+      });
+
+      /* --- 11. RIPPLE EFFECT on Reserve Button (JS Animation) --- */
+      document.querySelectorAll('.reserve-button, .btn-subscribe').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const rect = this.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          const size = Math.max(rect.width, rect.height) * 2;
+          ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px; height: ${size}px;
+            left: ${e.clientX - rect.left - size/2}px;
+            top: ${e.clientY - rect.top - size/2}px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: scale(0);
+            animation: rippleAnim 0.6s ease-out;
+            pointer-events: none;
+        `;
+          this.style.position = 'relative';
+          this.style.overflow = 'hidden';
+          this.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+
+      // Add ripple keyframe dynamically
+      const rippleStyle = document.createElement('style');
+      rippleStyle.textContent = `
+    @keyframes rippleAnim {
+        to { transform: scale(1); opacity: 0; }
+    }
+`;
+      document.head.appendChild(rippleStyle);
+
+      /* --- 12. NAVBAR LOGO HOVER ANIMATION (JS + CSS) --- */
+      document.querySelector('.navbar-brand')?.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05)';
+        this.style.transition = 'transform 0.3s ease';
+      });
+      document.querySelector('.navbar-brand')?.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+      });
+
+      /* --- 13. GALLERY ITEM STAGGER on page load (JS Animation) --- */
+      window.addEventListener('load', () => {
+        document.querySelectorAll('.gallery-item').forEach((item, i) => {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.9)';
+          item.style.transition = 'all 0.5s ease';
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'scale(1)';
+          }, 200 + i * 120);
+        });
+      });
+
+      /* --- 14. HERO CAROUSEL: reset ken-burns animation on slide change --- */
+      document.getElementById('carousel1').addEventListener('slide.bs.carousel', function(e) {
+        const incoming = e.relatedTarget.querySelector('img');
+        if (incoming) {
+          incoming.style.animation = 'none';
+          incoming.offsetHeight; // reflow
+          incoming.style.animation = '';
+        }
+      });
+    </script>
+
+  </body>
+</html>
